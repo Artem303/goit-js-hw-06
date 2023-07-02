@@ -9,14 +9,24 @@ const btnCreate = document.querySelector('[data-create]');
 const btnDestroy = document.querySelector('[data-destroy]');
 const boxesCreateEl = document.querySelector('#boxes');
 
+let amount = '';
+
 btnCreate.addEventListener('click', createBoxes);
 
-const divArr = [];
-const amount = Number(inputEl.value);
-
 function createBoxes(amount) {
-  // divArr.map((element, amount) => console.log(amount));
-  console.log(amount);
+  amount = inputEl.value;
+
+  boxesCreateEl.innerHTML = '';
+
+  for (let i = 0; i < Number(amount); i += 1) {
+    let size = `${30 + i * 10}px`;
+    const createDiv = document.createElement('div');
+    createDiv.style.width = size;
+    createDiv.style.height = size;
+    createDiv.style.backgroundColor = getRandomHexColor();
+
+    boxesCreateEl.append(createDiv);
+  }
 }
 
-// currentTarget.elements.
+btnDestroy.addEventListener('click', () => (boxesCreateEl.innerHTML = ''));
